@@ -5,6 +5,18 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 class MainBox extends React.Component {
 
 
+  state = {
+    current: Profile
+  }
+
+  changeCurrent = (current) =>{
+    console.log(current)
+    this.setState({
+      current: current
+    })
+  }
+
+
   render() {
 
     /*
@@ -14,11 +26,15 @@ class MainBox extends React.Component {
     */
 
     const detailsToDisplay = <div>Hi, I'm a div!</div>
-
+    
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar changeCurrent={this.changeCurrent} current={this.state.current}/>
+        {this.state.current == "Profile"? Profile() :""}
+        {this.state.current == "Photos"? Photos() :""}
+        {this.state.current == "Cocktails"? Cocktails() :""}
+        {this.state.current == "Pokemon"? <Pokemon /> :""}
+
       </div>
     )
   }
