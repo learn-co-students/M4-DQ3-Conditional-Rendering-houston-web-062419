@@ -4,6 +4,23 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  state = {
+    card: ""
+  }
+
+  handleClick = (e) => {
+    // console.log(e.target.id)
+    let card = ""
+    if (e.target.id === 'profile') {card = <Profile/>}
+    if (e.target.id === 'photo') {card = <Photos/>}
+    if (e.target.id === 'cocktail') {card = <Cocktails/>}
+    if (e.target.id === 'pokemon') {card = <Pokemon/>}
+
+
+    this.setState({
+      card: card
+    })
+  }
 
   render() {
 
@@ -14,11 +31,13 @@ class MainBox extends React.Component {
     */
 
     const detailsToDisplay = <div>Hi, I'm a div!</div>
+    // console.log(this.handleClick)
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar handleClick={this.handleClick}/>
         {detailsToDisplay}
+        {this.state.card}
       </div>
     )
   }
